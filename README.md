@@ -5,3 +5,4 @@ This is an exercise of vanilla javascript with pure html:5 and css3.
 
 You can play the game at:
   
+    https://pablojorgeandres.github.io/simonSays/
