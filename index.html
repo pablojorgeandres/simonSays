@@ -23,8 +23,8 @@
         border-radius: 50%;
         overflow: hidden;
         margin: 0 auto;
-        max-height: 55vh;
-        max-width: 55vh;
+        max-height: 52vh;
+        max-width: 52vh;
         min-width: 40vh;
         min-height: 40vh;
         box-shadow: 0 0 110px -20px #fff;
@@ -225,21 +225,6 @@
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-      window.addEventListener('touchstart', function() {
-
-      // create empty buffer
-      var buffer = myContext.createBuffer(1, 1, 22050);
-      var source = myContext.createBufferSource();
-      source.buffer = buffer;
-
-      // connect to output (your speakers)
-      source.connect(myContext.destination);
-
-      // play the file
-      source.noteOn(0);
-
-      }, false);
-
       var juego
       const azul = document.getElementById('azul')
       const rojo = document.getElementById('rojo')
