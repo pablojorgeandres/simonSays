@@ -291,6 +291,7 @@
           this.inicializar = this.inicializar.bind(this)
           this.siguienteNivel = this.siguienteNivel.bind(this)
           this.iluminarSecuencia = this.iluminarSecuencia.bind(this)
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.elegirColor = this.elegirColor.bind(this)
           this.getLevel(parseInt(levelChanger.textContent))
           this.colores = {
@@ -353,8 +354,7 @@
             setTimeout(() => {
               this.iluminarColor(color)
               this.playAudio(color)
-              audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
-            }, 500 * i)
+            }, 600 * i)
           }
         }
 
