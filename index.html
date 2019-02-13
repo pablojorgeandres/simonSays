@@ -309,10 +309,10 @@
         }
 
         generarSecuencia(){
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map( n => Math.floor( Math.random() * 4) )
         }
         siguienteNivel() {
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.subnivel = 0
           this.eliminarEventosClick()
           this.iluminarSecuencia()
