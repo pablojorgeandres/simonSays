@@ -283,12 +283,12 @@
         constructor() {
           this.inicializar()
           this.generarSecuencia()
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           setTimeout( () =>  this.siguienteNivel(), 800)
         }
         inicializar() {
           this.inicializar = this.inicializar.bind(this)
           this.siguienteNivel = this.siguienteNivel.bind(this)
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.iluminarSecuencia = this.iluminarSecuencia.bind(this)
           this.elegirColor = this.elegirColor.bind(this)
           this.getLevel(parseInt(levelChanger.textContent))
@@ -298,7 +298,9 @@
             amarillo,
             verde
           }
+        //   this.onTimeUpdate = this.onTimeUpdate.bind(this)
         }
+
         generarSecuencia(){
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map( n => Math.floor( Math.random() * 4) )
         }
@@ -352,7 +354,6 @@
             setTimeout(() => {
               this.iluminarColor(color)
               this.playAudio(color)
-              setTimeout( () => audioSprite.pause, 500 )
             }, 600 * i)
           }
         }
@@ -368,7 +369,8 @@
             if (audioTimes[id] && audioTimes[id].length) {
                 currentSprite = audioTimes[id]
                 audioSprite.currentTime = currentSprite.start
-                audioSprite.play(id)
+                audioSprite.play()
+                // setTimeout( () => audioSprite.pause, 500 )
             }
         }
 
