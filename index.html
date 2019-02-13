@@ -233,7 +233,7 @@
       <div id="rojo" class="color rojo right" data-color="rojo"></div>
       <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
       <div id="azul" class="color azul left" data-color="azul"></div>
-      <button id="btnEmpezar" class="btnEmpezar" onclick="empezarJuego()">Comienza a jugar!!!!</button>
+      <button id="btnEmpezar" class="btnEmpezar" onclick="empezarJuego()">Comienza a jugar!</button>
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
@@ -284,6 +284,7 @@
           this.inicializar()
           this.generarSecuencia()
           this.onTimeUpdate()
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           setTimeout( () =>  this.siguienteNivel(), 800)
         }
         inicializar() {
@@ -439,8 +440,6 @@
       }
       function startJuego() {
         juego.eliminarEventosClick()
-        audioSprite.play()
-        audioSprite.pause()
         juego = new Juego()
       }
     </script>
