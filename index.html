@@ -286,7 +286,7 @@
           setTimeout( () =>  this.siguienteNivel(), 800)
         }
         inicializar() {
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+          //audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.inicializar = this.inicializar.bind(this)
           this.siguienteNivel = this.siguienteNivel.bind(this)
           this.iluminarSecuencia = this.iluminarSecuencia.bind(this)
@@ -347,11 +347,11 @@
           }
         }
         iluminarSecuencia() {
-        //   audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           for(var i = 0; i < this.nivel; i++){
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => {
-              this.iluminarColor(color)
+              this.iluminarColor(color),
               this.playAudio(color)
             }, 600 * i)
           }
@@ -441,6 +441,7 @@
       }
       function startJuego() {
         juego.eliminarEventosClick()
+
         juego = new Juego()
       }
     </script>
