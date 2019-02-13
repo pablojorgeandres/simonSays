@@ -350,6 +350,7 @@
             setTimeout(() => {
               this.iluminarColor(color)
               this.playAudio(color)
+              audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
             }, 500 * i)
           }
         }
