@@ -346,27 +346,12 @@
         iluminarSecuencia() {
           for(var i = 0; i < this.nivel; i++){
             let color = this.transformarNumeroAColor(this.secuencia[i])
-            setTimeout(() => { 
+            setTimeout(() => {
+            debugger
               this.iluminarColor(color)
             }, 600 * i)
           }
         }
-        // playAudio(color) {
-        //   switch (color) {
-        //       case 'amarillo':
-        //         amarilloAudio.play()
-        //         break;     
-        //       case 'azul':
-        //         azulAudio.play()
-        //         break;
-        //       case 'rojo':
-        //         rojoAudio.play()
-        //         break;
-        //       case 'verde':
-        //         verdeAudio.play()
-        //         break;
-        //   }
-        // }
 
         // time update handler to ensure we stop when a sprite is complete
         onTimeUpdate() {
@@ -380,7 +365,6 @@
                 currentSprite = audioTimes[id]
                 audioSprite.currentTime = currentSprite.start
                 audioSprite.play()
-                audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
             }
         }
 
@@ -388,6 +372,7 @@
           this.colores[color].classList.add('light')
           setTimeout( () => this.apagarColor(color), 250)
           this.playAudio(color)
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
         }
         apagarColor(color){
           this.colores[color].classList.remove('light')
