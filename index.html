@@ -312,6 +312,7 @@
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map( n => Math.floor( Math.random() * 4) )
         }
         siguienteNivel() {
+          debugger
           audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.subnivel = 0
           this.eliminarEventosClick()
@@ -357,6 +358,8 @@
         }
         iluminarSecuencia() {
           for(var i = 0; i < this.nivel; i++){
+            audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => {
               this.iluminarColor(color),
