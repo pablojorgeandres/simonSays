@@ -366,7 +366,7 @@
             if (audioTimes[id] && audioTimes[id].length) {
                 currentSprite = audioTimes[id]
                 audioSprite.currentTime = currentSprite.start
-                audioSprite.play()
+                audioSprite.play(id)
                 audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
             }
         }
