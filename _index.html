@@ -98,21 +98,18 @@
       }
 
       .btnEmpezar {
-        width: 320px;
-        height: 80px;
+        width: 400px;
+        height: 100px;
         background-image: linear-gradient(to bottom, #000, #555);
         color: #ccc;
-        font-size: 2rem;
+        font-size: 2.2rem;
         position: absolute;
-        top: calc(50% - 40px);
-        left: calc(50% - 160px);
+        top: calc(50% - 50px);
+        left: calc(50% - 200px);
         box-shadow: -6px 0px 20px 2px #000;
         border-radius: 10px;
-        z-index: 11;
       }
-      .btnEmpezar:hover, .btnEmpezar:focus, 
-      .btnEmpezar:active, .btnEmpezar:focus-within, 
-      .btnEmpezar:hover {
+      .btnEmpezar:hover, .btnEmpezar:focus, .btnEmpezar:active {
         outline: none;
       }
 
@@ -236,10 +233,6 @@
       const btnEmpezar = document.getElementById('btnEmpezar')
       const btnStart = document.getElementById('btnStart-center')
       const audioLost = new Audio('sounds/lost.mp3')
-      const amarilloAudio = new Audio('sounds/amarillo.mp3')
-      const azulAudio = new Audio('sounds/azul.mp3')
-      const rojoAudio = new Audio('sounds/rojo.mp3')
-      const verdeAudio = new Audio('sounds/verde.mp3')
       const levelChanger = document.getElementById('btn-level')
       const ULTIMO_NIVEL = 30
 
@@ -277,8 +270,8 @@
         }
         siguienteNivel() {
           this.subnivel = 0
-          this.eliminarEventosClick()
           this.iluminarSecuencia()
+          this.eliminarEventosClick()
           this.agregarEventosClick()
         }
         getLevel(level) {
@@ -323,31 +316,17 @@
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => { 
               this.iluminarColor(color)
-            }, 600 * i)
+              this.playAudio(color)
+            }, 500 * i)
           }
         }
         playAudio(color) {
-          //this.audio = new Audio(`sounds/${color}.mp3`)
-          switch (color) {
-              case 'amarillo':
-                amarilloAudio.play()
-                break;     
-              case 'azul':
-                azulAudio.play()
-                break;     
-              case 'rojo':
-                rojoAudio.play()
-                break;     
-              case 'verde':
-                verdeAudio.play()
-                break;     
-          }
-          this.audio = `${color}Audio`
+          this.audio = new Audio(`sounds/${color}.mp3`)
+          this.audio.play()
         }
         iluminarColor(color){
           this.colores[color].classList.add('light')
           setTimeout( () => this.apagarColor(color), 250)
-          this.playAudio(color)
         }
         apagarColor(color){
           this.colores[color].classList.remove('light')
@@ -372,6 +351,7 @@
           const numeroColor = this.transformarColorANumero(nombreColor)
           this.iluminarColor(nombreColor)
           if(numeroColor === this.secuencia[this.subnivel]) {
+            this.playAudio(nombreColor)
             this.subnivel++
             if(this.subnivel === this.nivel) {
               this.nivel++
@@ -388,6 +368,7 @@
           } else {
             audioLost.play()
             this.perdioElJuego()
+            // setTimeout(this.perdioElJuego, 800);
           }
         }
         ganoElJuego(){
