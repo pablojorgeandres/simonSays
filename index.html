@@ -233,7 +233,7 @@
       <div id="rojo" class="color rojo right" data-color="rojo"></div>
       <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
       <div id="azul" class="color azul left" data-color="azul"></div>
-      <button id="btnEmpezar" class="btnEmpezar" onclick="empezarJuego()">Comienza a jugar!!!</button>
+      <button id="btnEmpezar" class="btnEmpezar" onclick="empezarJuego()">Comienza a jugar!</button>
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
@@ -266,6 +266,7 @@
             length: 0.4
         }
       }
+
       // current sprite being played
       var currentSprite = {};
 
@@ -300,7 +301,15 @@
           }
         }
 
+        // time update handler to ensure we stop when a sprite is complete
+        onTimeUpdate() {
+            if (this.currentTime >= currentSprite.start + currentSprite.length) {
+                audioSprite.pause()
+            }
+        }
+
         generarSecuencia(){
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.secuencia = new Array(ULTIMO_NIVEL).fill(0).map( n => Math.floor( Math.random() * 4) )
         }
         siguienteNivel() {
@@ -347,7 +356,6 @@
           }
         }
         iluminarSecuencia() {
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           for(var i = 0; i < this.nivel; i++){
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => {
@@ -355,13 +363,6 @@
               this.playAudio(color)
             }, 600 * i)
           }
-        }
-
-        // time update handler to ensure we stop when a sprite is complete
-        onTimeUpdate() {
-            if (this.currentTime >= currentSprite.start + currentSprite.length) {
-                audioSprite.pause()
-            }
         }
         
         playAudio(id){
