@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sound Sprite Test</title>
+</head>
+<body>
+    <button onclick="playColor('amarillo')">Amarillo</button>
+    <button onclick="playColor('azul')">Azul</button>
+    <button onclick="playColor('rojo')">Rojo</button>
+    <button onclick="playColor('verde')">Verde</button>
+    <script>
+        const audioSprite = new Audio('sounds/colorsAudioSprite.ogg');
+        const audioTimes = {
+            amarillo: {
+                start: 0,
+                length: 0.4
+            },
+            azul: {
+                start: 0.6,
+                length: 0.4
+            },
+            rojo: {
+                start: 1.2,
+                length: 0.4
+            },
+            verde: {
+                start: 1.8,
+                length: 0.4
+            }
+        };
+
+        // current sprite being played
+        let currentSprite = {};
+
+        // time update handler to ensure we stop when a sprite is complete
+        let onTimeUpdate = function() {
+            if (this.currentTime >= currentSprite.start + currentSprite.length) {
+                this.pause();
+            }
+        };
+        audioSprite.addEventListener('timeupdate', onTimeUpdate, false);
+
+        // in mobile Safari, the first time this is called will load the audio. Ideally, we'd load the audio file completely before doing this.
+        let playColor = function(id) {
+            if (audioTimes[id] && audioTimes[id].length) {
+                currentSprite = audioTimes[id];
+                audioSprite.currentTime = currentSprite.start;
+                audioSprite.play();
+            }
+        };
+    </script>
+</body>
+</html>

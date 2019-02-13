@@ -242,6 +242,27 @@
       const verdeAudio = new Audio('sounds/verde.mp3')
       const levelChanger = document.getElementById('btn-level')
       const ULTIMO_NIVEL = 30
+      const audioSprite = new Audio('sounds/colorsAudioSprite.ogg')
+      const audioTimes = {
+        amarillo: {
+            start: 0,
+            length: 0.4
+        },
+        azul: {
+            start: 0.6,
+            length: 0.4
+        },
+        rojo: {
+            start: 1.2,
+            length: 0.4
+        },
+        verde: {
+            start: 1.8,
+            length: 0.4
+        }
+      }
+      // current sprite being played
+      var currentSprite = {};
 
       function changeLevel() {
         let level = parseInt(levelChanger.textContent)
@@ -323,27 +344,42 @@
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => { 
               this.iluminarColor(color)
-            }, 1000 * i)
+            }, 600 * i)
           }
         }
-        playAudio(color) {
-          //this.audio = new Audio(`sounds/${color}.mp3`)
-          switch (color) {
-              case 'amarillo':
-                amarilloAudio.play()
-                break;     
-              case 'azul':
-                azulAudio.play()
-                break;     
-              case 'rojo':
-                rojoAudio.play()
-                break;     
-              case 'verde':
-                verdeAudio.play()
-                break;     
-          }
-          this.audio = `${color}Audio`
+        // playAudio(color) {
+        //   switch (color) {
+        //       case 'amarillo':
+        //         amarilloAudio.play()
+        //         break;     
+        //       case 'azul':
+        //         azulAudio.play()
+        //         break;
+        //       case 'rojo':
+        //         rojoAudio.play()
+        //         break;
+        //       case 'verde':
+        //         verdeAudio.play()
+        //         break;
+        //   }
+        // }
+
+        // time update handler to ensure we stop when a sprite is complete
+        onTimeUpdate() {
+            if (this.currentTime >= currentSprite.start + currentSprite.length) {
+                this.pause()
+            }
         }
+        
+        playAudio(id){
+            if (audioTimes[id] && audioTimes[id].length) {
+                currentSprite = audioTimes[id]
+                audioSprite.currentTime = currentSprite.start
+                audioSprite.play()
+                audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+            }
+        }
+
         iluminarColor(color){
           this.colores[color].classList.add('light')
           setTimeout( () => this.apagarColor(color), 250)
