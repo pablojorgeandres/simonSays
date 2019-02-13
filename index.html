@@ -244,14 +244,10 @@
       const verde = document.getElementById('verde')
       const btnEmpezar = document.getElementById('btnEmpezar')
       const btnStart = document.getElementById('btnStart-center')
-      const audioLost = new Audio('sounds/lost.mp3')
-      const amarilloAudio = new Audio('sounds/amarillo.mp3')
-      const azulAudio = new Audio('sounds/azul.mp3')
-      const rojoAudio = new Audio('sounds/rojo.mp3')
-      const verdeAudio = new Audio('sounds/verde.mp3')
       const levelChanger = document.getElementById('btn-level')
       const ULTIMO_NIVEL = 30
-      const audioSprite = new Audio('sounds/colorsAudioSprite.mp3')
+      const audioLost = new Audio('sounds/lost.mp3')
+      const audioSprite = new Audio('sounds/colorsAudioSprite.mp3') || new Audio('sounds/colorsAudioSprite.ogg')
       const audioTimes = {
         amarillo: {
             start: 0,
@@ -353,7 +349,8 @@
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => {
               this.iluminarColor(color)
-            }, 600 * i)
+              this.playAudio(color)
+            }, 500 * i)
           }
         }
 
@@ -369,14 +366,13 @@
                 currentSprite = audioTimes[id]
                 audioSprite.currentTime = currentSprite.start
                 audioSprite.play()
+                audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
             }
         }
 
         iluminarColor(color){
           this.colores[color].classList.add('light')
           setTimeout( () => this.apagarColor(color), 250)
-          this.playAudio(color)
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
         }
         apagarColor(color){
           this.colores[color].classList.remove('light')
@@ -401,6 +397,7 @@
           const numeroColor = this.transformarColorANumero(nombreColor)
           this.iluminarColor(nombreColor)
           if(numeroColor === this.secuencia[this.subnivel]) {
+            this.playAudio(nombreColor)
             this.subnivel++
             if(this.subnivel === this.nivel) {
               this.nivel++
