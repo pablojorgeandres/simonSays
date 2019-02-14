@@ -284,11 +284,11 @@
         constructor() {
           this.inicializar()
           this.generarSecuencia()
-          setTimeout( () =>  this.siguienteNivel(), 800)
+          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+          setTimeout( () =>  this.siguienteNivel(), 1000)
         }
         inicializar() {
           this.inicializar = this.inicializar.bind(this)
-          this.onTimeUpdate = this.onTimeUpdate.bind(this)
           this.siguienteNivel = this.siguienteNivel.bind(this)
           this.iluminarSecuencia = this.iluminarSecuencia.bind(this)
           this.elegirColor = this.elegirColor.bind(this)
@@ -313,7 +313,7 @@
         }
         siguienteNivel() {
           debugger
-          audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
+          //audioSprite.addEventListener('timeupdate', this.onTimeUpdate, false)
           this.subnivel = 0
           this.eliminarEventosClick()
           this.iluminarSecuencia()
