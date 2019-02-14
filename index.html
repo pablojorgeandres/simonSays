@@ -19,6 +19,9 @@
         background-size: cover;
         font-family: 'Press Start 2P', cursive;
       }
+      button {
+        margin: 0 0.2vw;
+      }
 
       .gameboard {
         height: 100vh;
@@ -210,6 +213,16 @@
     </style>
   </head>
   <body>
+    <button 
+      id="btnEmpezar" 
+      class="btnEmpezar" 
+      onclick="
+          audioSprite.play();
+          audioSprite.pause();
+          empezarJuego()
+      ">
+      Comienza a jugar!
+    </button>
     <div class="gameboard">
       <div id="black-center" >
         <p class="simon-txt">
@@ -234,16 +247,6 @@
       <div id="rojo" class="color rojo right" data-color="rojo"></div>
       <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
       <div id="azul" class="color azul left" data-color="azul"></div>
-      <button 
-            id="btnEmpezar" 
-            class="btnEmpezar" 
-            onclick="
-                audioSprite.play();
-                audioSprite.pause();
-                empezarJuego()
-            ">
-            Comienza a jugar!
-      </button>
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
