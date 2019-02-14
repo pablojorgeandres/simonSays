@@ -268,7 +268,7 @@
       }
 
       // current sprite being played
-      var currentSprite = {};
+      let currentSprite = {};
 
       function changeLevel() {
         let level = parseInt(levelChanger.textContent)
@@ -360,7 +360,7 @@
           for(var i = 0; i < this.nivel; i++){
             let color = this.transformarNumeroAColor(this.secuencia[i])
             setTimeout(() => {
-              this.iluminarColor(color),
+              this.iluminarColor(color)
               this.playAudio(color)
             }, 600 * i)
           }
@@ -371,7 +371,9 @@
                 currentSprite = audioTimes[id]
                 audioSprite.currentTime = currentSprite.start
                 audioSprite.play()
-                // setTimeout( () => audioSprite.pause, 500 )
+                setTimeout( () => {
+                    if(!audioSprite.pause){ audioSprite.pause } 
+                }, 500 )
             }
         }
 
