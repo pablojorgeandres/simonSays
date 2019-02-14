@@ -2,6 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta property="og:title" content="Simon Says">
+    <meta property="og:description" content="Easy audio-visual-memory game for all ages.">
+    <meta property="og:image" content="images/frontimage.jpg">
+    <meta property="og:url" content="https://pablojorgeandres.github.io/simonSays/">
+    <link rel="icon" href="images/favicon.ico">
     <title>Simon Says</title>
     <style>
       @import url('https://fonts.googleapis.com/css?family=Coda+Caption:800|Press+Start+2P|Share+Tech+Mono');
@@ -13,8 +18,6 @@
         height: 100vh;
         background-size: cover;
         font-family: 'Press Start 2P', cursive;
-        /* font-family: 'Coda Caption', sans-serif; */
-        /* font-family: 'Share Tech Mono', monospace; */
       }
 
       .gameboard {
@@ -145,18 +148,15 @@
         margin-block-end: 0em !important;
       }
       .simon-txt img {
-        padding-top: 3.4vh;
+        padding-top: 3.5vh;
         height: 3vh;
       }
       .start, #speaker {
-        width: 100%;
+        width: 101%;
         height: 60%;
         display: inline-block;
         border-top: 1vh solid #000;
         background-image: linear-gradient(180deg, #555 10%, rgba(136,136,136,.1));
-        /* width: calc( 50% - 1vh ); */
-        /* height: calc( 50% - 1vh); */
-        /* margin-top: -1em; */
       }
       .start {
         /* border-right: 1vh solid #000; */
@@ -170,9 +170,9 @@
         border-radius: 50%;
         box-shadow: -2px 0 18px -6px #fff;
         border: .6vh solid #000;
-        font-size: 0.8vh;
+        font-size: 0.9vh;
         margin-top: 2vh;
-        /* margin: calc(50% - 4vh) 26%; */
+        transform: scale(1.15);
       }
       .start button:focus, .start button:active {
         outline: none;
@@ -182,7 +182,7 @@
       }
       .start button:active {
         box-shadow: none;
-        cursor:pointer;
+        cursor: pointer;
       }
       #btnStart-center {
         background-image: linear-gradient(red, darkred);
@@ -233,11 +233,16 @@
       <div id="rojo" class="color rojo right" data-color="rojo"></div>
       <div id="amarillo" class="color amarillo left" data-color="amarillo"></div>
       <div id="azul" class="color azul left" data-color="azul"></div>
-      <button id="btnEmpezar" class="btnEmpezar" onclick="
-                                                    audioSprite.play();
-                                                    audioSprite.pause();
-                                                    empezarJuego()
-                                                ">Comienza a jugar!</button>
+      <button 
+            id="btnEmpezar" 
+            class="btnEmpezar" 
+            onclick="
+                audioSprite.play();
+                audioSprite.pause();
+                empezarJuego()
+            ">
+            Comienza a jugar!
+      </button>
     </div>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
