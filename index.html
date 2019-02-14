@@ -223,11 +223,11 @@
           </button>
           <p class="level-btn-text">level</p>
         </div>
-        <div id="speaker">
+        <!-- <div id="speaker">
           <p>
             <img src="images/speaker.png" alt="speaker">
           </p>
-        </div>
+        </div> -->
       </div>
       <div id="verde" class="color verde right" data-color="verde"></div>
       <div id="rojo" class="color rojo right" data-color="rojo"></div>
@@ -247,7 +247,7 @@
       const levelChanger = document.getElementById('btn-level')
       const ULTIMO_NIVEL = 30
       const audioLost = new Audio('sounds/lost.mp3')
-      const audioSprite = new Audio('sounds/colorsAudioSprite.mp3')// || new Audio('sounds/colorsAudioSprite.ogg')
+      let audioSprite = new Audio('sounds/colorsAudioSprite.mp3')// || new Audio('sounds/colorsAudioSprite.ogg')
       const audioTimes = {
         amarillo: {
             start: 0,
@@ -367,10 +367,11 @@
         playAudio(id){
             if (audioTimes[id] && audioTimes[id].length) {
                 currentSprite = audioTimes[id]
+                
                 audioSprite.currentTime = currentSprite.start
                 audioSprite.play()
                 setTimeout( () => {
-                    if(!audioSprite.pause){ audioSprite.pause } 
+                    if(!audioSprite.pause){ audioSprite.pause() } 
                 }, 500 )
             }
         }
@@ -443,7 +444,11 @@
       }
       function startJuego() {
         juego.eliminarEventosClick()
-
+        audioSprite.currentTime = 2.4
+        audioSprite.play()
+        setTimeout( () => {
+            if(!audioSprite.pause){ audioSprite.pause() } 
+        }, 100 )
         juego = new Juego()
       }
     </script>
