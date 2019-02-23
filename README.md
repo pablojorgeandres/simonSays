@@ -6,4 +6,4 @@ Developed with vanilla javascript, html:5 and css3.
 
 _You can play the game at:_
   
-    https://pablojorgeandres.github.io/simonSays/
+   https://pablojorgeandres.github.io/simonSays/
