@@ -1,8 +1,9 @@
 # simonSays
-Game Simon Says - js exercise
 
-This is an exercise of vanilla javascript with pure html:5 and css3.
+### Game: Simon Says
 
-You can play the game at:
+Developed with vanilla javascript, html:5 and css3.
+
+_You can play the game at:_
   
     https://pablojorgeandres.github.io/simonSays/
